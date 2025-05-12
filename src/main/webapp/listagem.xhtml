@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<title>DAC AP2 | Listagem</title>
+</h:head>
+<h:body>
+	<h:form id="form-listagem">
+	<h1>Manutenção Ar Condicionado</h1>
+	<p:link outcome="index" value="Voltar ao Início" />
+	
+	<p:messages id="msgs" showDetail="true" closable="true" />
+	
+	<p:dataTable value="#{arCondicionadoBean.arCondicionadoList}" var="arCondicionado">
+        <p:column headerText="#">#{arCondicionado.id}</p:column>
+        <p:column headerText="Descrição">#{arCondicionado.descricao}</p:column>
+        <p:column headerText="Data de Manutenção">#{arCondicionado.dataManutencao}</p:column>
+        <p:column headerText="Temperatura Atual">#{arCondicionado.temperaturaAtual}</p:column>
+        <p:column headerText="Temperatura Mínima">#{arCondicionado.temperaturaMinima}</p:column>
+        <p:column headerText="Temperatura Máxima">#{arCondicionado.temperaturaMaxima}</p:column>
+
+        <p:column headerText="Excluir">
+            <p:commandButton icon="pi pi-trash" title="Excluir"
+                             action="#{arCondicionadoBean.excluir(arCondicionado)}"
+                             update=":form-listagem"
+                             onclick="return confirm('Tem certeza que deseja excluir este registro?')" />
+        </p:column>
+        
+        <p:column headerText="Manutenção">
+            <p:commandButton icon="pi" title="Manutenção"
+                             action="#{arCondicionadoBean.getDiasParaManutencao(arCondicionado)}"
+                             update=":form-listagem"/>
+        </p:column>
+        
+        <p:column headerText="Maior Data Manutenção">
+            <p:commandButton icon="pi" title="Maior Data de Manutenção"
+                             action="#{arCondicionadoBean.getMaxDataManutencao}"
+                             update=":form-listagem"/>
+        </p:column>
+
+        
+    </p:dataTable>
+    </h:form>
+</h:body>
+</html>

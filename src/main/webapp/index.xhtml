@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<title>DAC AP2 | Home</title>
+</h:head>
+<h:body>
+	<h1>Manutenção Ar Condicionado</h1>
+	<h:form id="form">
+
+		<p:messages id="msgs" showDetail="true" closable="true" />
+		
+		<p:outputLabel value="Descrição" for="descricao" />
+		<p:inputText id="descricao"
+			value="#{arCondicionadoBean.arCondicionado.descricao}"
+			label="Descrição" />
+
+		<p:outputLabel value="Data de Manutenção:" for="dataManutencao" />
+		<p:calendar id="dataManutencao"
+			value="#{arCondicionadoBean.arCondicionado.dataManutencao}"
+			mindate="#{ArCondicionadoBean.dataAtual}" pattern="dd/MM/yyyy"
+			label="Data de Manutenção" />
+
+		<p:outputLabel value="Temperatura Mínima:" for="temperaturaMinima" />
+		<p:inputText id="temperaturaMinima"
+			value="#{arCondicionadoBean.arCondicionado.temperaturaMinima}"
+			label="Temperatura Mínima" />
+
+		<p:outputLabel value="Temperatura Máxima:" for="temperaturaMaxima" />
+		<p:inputText id="temperaturaMaxima"
+			value="#{arCondicionadoBean.arCondicionado.temperaturaMaxima}"
+			label="Temperatura Máxima" />
+		
+		
+        <p:commandButton value="Salvar" action="#{arCondicionadoBean.salvar}" update="form"/>
+		<p:link outcome="listagem" value="listar"/>
+
+
+	</h:form>
+</h:body>
+</html>
